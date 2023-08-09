@@ -1,5 +1,6 @@
 import React from "react";
 import {useState} from "react";
+import TodoItem from "./TodoItem";
 
 function App() {
 
@@ -20,11 +21,19 @@ function App() {
         setInputText("");
     }
 
+    function deleteItem(id) {
+        setTodoItems((prevItems) => {
+            return prevItems.filter((item, index) => {
+                return index !== id;
+            });
+        });
+    }
+
     const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       addListItems();
     }
-  };
+    };
 
   return (
     <div className="container">
@@ -45,8 +54,13 @@ function App() {
       </div>
       <div>
         <ul>
-         { items.map((todoItem)=>{
-              return <li>{todoItem}</li>
+                  {items.map((todoItem, index) => {
+                      return <TodoItem
+                          key={index}
+                          id={index }
+                          text={todoItem}
+                          onChecked={deleteItem }
+                      />
           }) }
         </ul>
       </div>
