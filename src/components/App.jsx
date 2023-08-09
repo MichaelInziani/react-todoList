@@ -1,24 +1,24 @@
 import React from "react";
 import {useState} from "react";
 import TodoItem from "./TodoItem";
+import InputArea from "./InputArea";
 
 function App() {
 
-    const [inputText, setInputText] = useState("");
+    //const [inputText, setInputText] = useState("");
 
-    function handleChange(event){
-        const newValue = event.target.value;
+    //function handleChange(event){
+       // const newValue = event.target.value;
 
-        setInputText(newValue);
-    }
+     //   setInputText(newValue);
+   // }
 
     const [items, setTodoItems] = useState([]);
 
-    function addListItems(){
-        setTodoItems((prevItems)=>{
+    function addListItems(inputText){
+        setTodoItems((prevItems) => {
             return [...prevItems, inputText]
-        })
-        setInputText("");
+        });
     }
 
     function deleteItem(id) {
@@ -29,29 +29,34 @@ function App() {
         });
     }
 
-    const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      addListItems();
-    }
-    };
+  // const handleKeyDown = (event) => {
+   // if (event.key === "Enter") {
+   //   addListItems();
+  // }
+  //  };
 
   return (
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
-      </div>
-      <div className="form">
+          </div>
+          <InputArea
+              onAdd={addListItems}
+              
+          />
+
+          {/* <div className="form">
         <input 
         type="text" 
         onKeyDown={handleKeyDown} 
         onChange={handleChange} 
         value = {inputText}
-        />
+        />  
 
         <button onClick={addListItems} >
           <span>Add</span>
         </button>
-      </div>
+      </div> */}
       <div>
         <ul>
                   {items.map((todoItem, index) => {
