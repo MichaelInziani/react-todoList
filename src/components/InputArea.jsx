@@ -11,6 +11,7 @@ function InputArea(props) {
     const handleKeyDown = (event) => {
         if (event.key === "Enter") {
             props.onAdd(inputText);
+            setInputText("");
           }
     };
 
